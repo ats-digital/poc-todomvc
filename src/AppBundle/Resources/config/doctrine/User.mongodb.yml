@@ -1,0 +1,6 @@
+AppBundle\Document\User:
+    fields:
+        id:
+            id: true
+            type: int
+            strategy: INCREMENT
