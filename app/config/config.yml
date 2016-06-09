@@ -30,6 +30,20 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
 
+# Assetic Configuration
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:
+        - AppBundle
+        - FOSUserBundle
+    filters:
+        cssrewrite: ~
+        uglifycss:
+            bin: /usr/local/bin/uglifycss
+        uglifyjs2:
+            bin: /usr/local/bin/uglifyjs
+
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -40,12 +54,6 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
-        # if using pdo_sqlite as your database driver:
-        #   1. add the path in parameters.yml
-        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
-        #   2. Uncomment database_path in parameters.yml.dist
-        #   3. Uncomment next line:
-        #     path:     "%database_path%"
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
@@ -97,4 +105,24 @@ doctrine_mongodb:
 fos_user:
     db_driver: mongodb
     firewall_name: main
-    user_class: AppBundle\Document\User
+    user_class: CoreBundle\Document\User
+
+jms_serializer:
+    metadata:
+        auto_detection: true
+
+fos_rest:
+    routing_loader:
+        default_format: json
+    view:
+        formats:
+            rss: false
+            xml: true
+            json: true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+        view_response_listener: true

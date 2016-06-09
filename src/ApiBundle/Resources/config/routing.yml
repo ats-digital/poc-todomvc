@@ -1,0 +1,5 @@
+api_todo:
+    type: rest
+    prefix: /todo
+    resource: ApiBundle\Controller\TodoController
+    name_prefix: api_todo_

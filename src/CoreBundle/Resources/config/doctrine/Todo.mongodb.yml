@@ -1,0 +1,8 @@
+CoreBundle\Document\Todo:
+    fields:
+        id:
+            id: true
+            type: int
+            strategy: INCREMENT
+        content:
+            type: string

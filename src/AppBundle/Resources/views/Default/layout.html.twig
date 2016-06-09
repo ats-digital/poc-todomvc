@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}ATS TODO Poc{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets
+            'assets/theme/css/bootstrap.min.css'
+            'assets/theme/css/font-awesome.min.css'
+            'assets/theme/css/sb-admin-2.css'
+            filter='?uglifycss,?cssrewrite'
+            %}
+            <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body ng-app="app" ng-cloak>
+        <div id="wrapper" ui-view></div>
+        {% block javascripts %}
+            <script type="text/javascript">
+                var env = "{{ app.environment }}";
+            </script>
+            {% javascripts filter='?uglifyjs2' output='js/compiled/main_theme.min.js'
+            'assets/theme/js/jquery.min.js'
+            'assets/theme/js/bootstrap.min.js'
+            'assets/theme/js/metisMenu.min.js'
+            'assets/theme/js/sb-admin-2.js'
+            %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+
+            {% javascripts filter='?uglifyjs2' output='js/compiled/main_3rd_part.min.js'
+            'assets/vendor/underscore/underscore-min.js' %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+
+            {% javascripts filter='?uglifyjs2' output='js/compiled/main_angular.min.js'
+            'assets/vendor/angular/angular.min.js'
+            'assets/vendor/angular-ui-router/release/angular-ui-router.min.js'
+            'assets/vendor/angular-resource/angular-resource.min.js' %}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+
+            {% javascripts filter='?uglifyjs2' output='js/compiled/main_todo.js'
+            'assets/app/app.js'
+            'assets/app/app.route.js'
+            'assets/app/Todo/*'%}
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
+    </body>
+</html>

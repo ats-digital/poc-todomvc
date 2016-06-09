@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Document;
+namespace CoreBundle\Document;
 
 use FOS\UserBundle\Model\User as BaseUser;
 
@@ -23,9 +23,4 @@ class User extends BaseUser
     {
         return $this->id;
     }
-
-//    public function __construct()
-//    {
-//        parent::__construct();
-//    }
 }

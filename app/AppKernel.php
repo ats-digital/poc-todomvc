@@ -21,6 +21,9 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Sp\BowerBundle\SpBowerBundle(),
+
+            new CoreBundle\CoreBundle(),
+            new ApiBundle\ApiBundle(),
             new AppBundle\AppBundle(),
         );
 

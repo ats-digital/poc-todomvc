@@ -1,0 +1,9 @@
+CoreBundle\Document\Todo:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            type: integer
+        content:
+            expose: true
+            type: string
