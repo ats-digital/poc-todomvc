@@ -71,6 +71,13 @@ angular.module('app')
             { complete: false } : (status === 'completed') ?
             { complete: true } : {};
     };
+
+    $scope.clearComplete = function() {
+        TodoProvider.clearComplete(function() {
+            $scope.todos = filterFilter($scope.todos, {complete: false});
+        });
+    };
+
     /**
      * Check if all todo's are complete.
      */

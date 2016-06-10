@@ -78,6 +78,25 @@ class TodoController extends Controller
     }
 
     /**
+     * Remove all completed Todo's.
+     * 
+     * @Rest\Get("/clear-complete")
+     * @Rest\View
+     */
+    public function clearCompleteAction()
+    {
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $res = $dm->getRepository('CoreBundle:Todo')
+                  ->clearComplete();
+
+        if (!$res['err']) {
+            return ['status' => true];
+        } else {
+            return ['status' => false];
+        }
+    }
+
+    /**
      * get Todo.
      * 
      * @Rest\View

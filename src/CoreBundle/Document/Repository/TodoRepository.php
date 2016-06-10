@@ -25,4 +25,20 @@ class TodoRepository extends DocumentRepository
 
         return $q->execute();
     }
+
+    /**
+     * Remove all completed Todo's.
+     * 
+     * @return array
+     */
+    public function clearComplete()
+    {
+        $q = $this->createQueryBuilder()
+                  ->remove()
+                  ->multiple(true)
+                   ->field('complete')->equals(true)
+                   ->getQuery();
+
+        return $q->execute();
+    }
 }

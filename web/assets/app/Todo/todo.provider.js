@@ -13,6 +13,9 @@ angular.module('app')
         switchComplete: {
             url: getApiPath('/todo/switch-complete'),
             method: 'POST'
+        },
+        clearComplete: {
+            url: getApiPath('/todo/clear-complete')
         }
     });
 }]);
