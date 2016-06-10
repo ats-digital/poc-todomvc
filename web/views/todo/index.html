@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">TODOS</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-6">
+                <form role="form" ng-submit="addTodo()">
+                    <div class="form-group">
+                        <input type="checkbox" ng-model="allComplete" ng-click="switchComplete()">
+                        <input class="form-control"
+                               placeholder="What needs to be done?"
+                               ng-model="content"
+                               autofocus>
+                    </div>
+                </form>
+                <div id="todo-list"
+                     class="checkbox"
+                     ng-repeat="todo in todos | filter:statusFilter track by $index"
+                     ng-class="{completed: todo.complete}">
+                    <div class="view">
+                        <input type="checkbox" ng-model="todo.complete" ng-click="saveEdits(todo, 'submit')">
+                        <label ng-dblclick="editTodo(todo)" ng-hide="todo.edit">{{todo.content}}</label>
+                        <form ng-submit="saveEdits(todo, 'submit')"
+                              ng-blur="saveEdits(todo, 'blur')"
+                              ng-show="todo.edit">
+                            <input class="edit" ng-model="todo.content">
+                        </form>
+                        <button ng-click="removeTodo(todo, $index)" class="pull-right">
+                            <i class="fa fa-close fa-fw"></i>
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <button ng-click="toggleStatus(null)">All</button>
+                    <button ng-click="toggleStatus('active')">Active</button>
+                    <button ng-click="toggleStatus('completed')">Completed</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

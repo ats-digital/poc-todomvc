@@ -7,3 +7,6 @@ CoreBundle\Document\Todo:
         content:
             expose: true
             type: string
+        complete:
+            expose: true
+            type: boolean

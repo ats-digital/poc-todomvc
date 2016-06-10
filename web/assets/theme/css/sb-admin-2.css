@@ -352,3 +352,8 @@ table.dataTable thead .sorting:after {
 .panel-yellow a:hover {
     color: #df8a13;
 }
+
+.completed label {
+    color: #d9d9d9;
+    text-decoration: line-through;
+}

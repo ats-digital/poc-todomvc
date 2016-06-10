@@ -14,7 +14,9 @@ class TodoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content');
+            ->add('id')
+            ->add('content')
+            ->add('complete');
     }
 
     /**
@@ -35,6 +37,6 @@ class TodoType extends AbstractType
      */
     public function getName()
     {
-        return 'todo';
+        return '';
     }
 }

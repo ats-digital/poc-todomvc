@@ -1,4 +1,5 @@
 CoreBundle\Document\Todo:
+    repositoryClass: CoreBundle\Document\Repository\TodoRepository
     fields:
         id:
             id: true
@@ -6,3 +7,5 @@ CoreBundle\Document\Todo:
             strategy: INCREMENT
         content:
             type: string
+        complete:
+            type: boolean

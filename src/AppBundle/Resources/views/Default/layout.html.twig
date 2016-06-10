@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}ATS TODO Poc{% endblock %}</title>
+        <title>{% block title %}ATS TODO MVC{% endblock %}</title>
         {% block stylesheets %}
             {% stylesheets
             'assets/theme/css/bootstrap.min.css'
@@ -16,7 +16,20 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body ng-app="app" ng-cloak>
-        <div id="wrapper" ui-view></div>
+        <div id="wrapper">
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="">ATS TODO MVC</a>
+                </div>
+
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-close fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+            </nav>
+            <div id="page-wrapper" ui-view></div>
+        </div>
         {% block javascripts %}
             <script type="text/javascript">
                 var env = "{{ app.environment }}";

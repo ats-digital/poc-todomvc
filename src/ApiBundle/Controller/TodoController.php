@@ -13,11 +13,11 @@ use CoreBundle\Form\TodoType;
 class TodoController extends Controller
 {
     /**
-     * list of todo's
+     * list of todo's.
      * 
      * @Rest\View
      */
-    public function listAction(Request $request)
+    public function listAction()
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
         $todos = $dm->getRepository('CoreBundle:Todo')->findAll();
@@ -26,7 +26,7 @@ class TodoController extends Controller
     }
 
     /**
-     * save Todo
+     * save Todo.
      *
      * @Rest\Post
      * @Rest\View
@@ -57,14 +57,34 @@ class TodoController extends Controller
     }
 
     /**
-     * get a todo
+     * Set all Todo's as complete.
      * 
+     * @Rest\Post("/switch-complete")
      * @Rest\View
      * @param Request $request
+     * @return array
+     */
+    public function switchCompleteAction(Request $request)
+    {
+        $dm = $this->get('doctrine_mongodb')->getManager();
+        $res = $dm->getRepository('CoreBundle:Todo')
+                  ->switchComplete($request->get('allComplete'));
+
+        if (!$res['err']) {
+            return ['status' => true];
+        } else {
+            return ['status' => false];
+        }
+    }
+
+    /**
+     * get Todo.
+     * 
+     * @Rest\View
      * @param integer $id
      * @return Todo
      */
-    public function getAction(Request $request, $id)
+    public function getAction($id)
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
         $todo = $dm->getRepository('CoreBundle:Todo')->find($id);
@@ -77,13 +97,13 @@ class TodoController extends Controller
     }
 
     /**
-     * remove todo
+     * delete todo.
      * 
+     * @Rest\Delete
      * @Rest\View
-     * @param Request $request
      * @param type $id
      */
-    public function removeAction(Request $request, $id)
+    public function deleteAction($id)
     {
         $dm = $this->get('doctrine_mongodb')->getManager();
         $todo = $dm->getRepository('CoreBundle:Todo')->find($id);
